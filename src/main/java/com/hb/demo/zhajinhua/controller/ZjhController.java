@@ -6,10 +6,10 @@ import com.hb.demo.zhajinhua.service.ZjhService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 /**
  * controller请求
@@ -18,25 +18,51 @@ import java.util.List;
  * @since 2021/08/16
  */
 @RestController
-@RequestMapping(value = "/test")
 @Slf4j
 public class ZjhController {
 
     @Autowired
     ZjhService zjhService;
 
-    @GetMapping("/get")
-    public String getTest() {
-        //玩家获取手牌
-        PersonBO p2 = new PersonBO("蒋其");
-        PersonBO p3 = new PersonBO("徐荣");
-        PersonBO p4 = new PersonBO("曾翔");
-        PersonBO[] personBOS = zjhService.getCard(p2, p3, p4);
-        //比较大小
-        List<PersonBO> winner = zjhService.winner(personBOS);
-        zjhService.addMoney(winner);
-        log.info("winner====={}", winner);
-        return JSON.toJSONString(winner);
+    /**
+     * 发牌
+     *
+     * @return 结果集
+     */
+    @PostMapping("/getCard")
+    public String getCard(@NotNull PersonBO[] personBOS) {
+        PersonBO[] personBOSCards = zjhService.getCard(personBOS);
+        log.info("发牌====={}", personBOSCards);
+        return JSON.toJSONString(personBOSCards);
     }
 
+
+    /**
+     * 加注
+     * 判断是否密牌，仅限第一圈
+     *
+     * @return 结果集
+     */
+    @GetMapping("/ante_up")
+    public String anteUp() {
+        //TODO 加注
+        return null;
+    }
+
+    /**
+     * 开牌，仅限当前话语权玩家开任意玩家牌且第二圈
+     * 比大小
+     *
+     * @return 结果
+     */
+    @GetMapping("/battle")
+    public String battle() {
+        //TODO 开牌
+        return null;
+    }
+
+
+
 }
+
+
