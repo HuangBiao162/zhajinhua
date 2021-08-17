@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hb.demo.zhajinhua.mapper.UserInfoMapper">
+    <resultMap id="Base_Result_Map" type="com.hb.demo.zhajinhua.po.UserInfoPO">
+        <result column="uid" jdbcType="BIGINT"  property="uid"/>
+        <result column="rid" jdbcType="BIGINT"   property="rid"/>
+        <result column="cid" jdbcType="BIGINT"   property="cid"/>
+        <result column="name" jdbcType="VARCHAR"   property="name"/>
+        <result column="integral" jdbcType="BIGINT"   property="integral"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        uid, rid, cid, name, integral, create_time
+    </sql>
+
+    <select id="selInfoList" resultMap="Base_Result_Map" parameterType="com.hb.demo.zhajinhua.po.UserInfoPO">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        <where>
+            <if test="uid != null and uid!=''">
+                and uid = #{uid}
+            </if>
+            <if test="rid != null and rid!=''">
+                and rid = #{rid}
+            </if>
+            <if test="cid != null and cid!=''">
+                and cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addInfo" parameterType="com.hb.demo.zhajinhua.po.UserInfoPO" useGeneratedKeys="true" keyProperty="uid">
+        insert into user_info(cid, rid, name, integral, create_time)
+                values(#{cid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT},
+                        #{name,jdbcType=VARCHAR}, #{integral,jdbcType=BIGINT}, now())
+    </insert>
+</mapper>

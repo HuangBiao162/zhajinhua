@@ -5,9 +5,7 @@ import com.hb.demo.zhajinhua.bo.PersonBO;
 import com.hb.demo.zhajinhua.service.ZjhService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 
@@ -18,6 +16,7 @@ import javax.validation.constraints.NotNull;
  * @since 2021/08/16
  */
 @RestController
+@RequestMapping("/card")
 @Slf4j
 public class ZjhController {
 
@@ -25,7 +24,7 @@ public class ZjhController {
     ZjhService zjhService;
 
     /**
-     * 发牌
+     * 发牌，打底
      *
      * @return 结果集
      */

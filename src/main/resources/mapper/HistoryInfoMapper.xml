@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hb.demo.zhajinhua.mapper.HistoryInfoMapper">
+    <resultMap id="Base_Result_Map" type="com.hb.demo.zhajinhua.po.HistoryInfoPO">
+        <result column="hid" jdbcType="BIGINT"   property="hid"/>
+        <result column="uid" jdbcType="BIGINT"  property="uid"/>
+        <result column="rid" jdbcType="BIGINT"   property="rid"/>
+        <result column="cid" jdbcType="BIGINT"   property="cid"/>
+        <result column="win" jdbcType="BIGINT"   property="win"/>
+        <result column="create_time" jdbcType="DATE" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        hid, uid, rid, cid, win, create_time
+    </sql>
+
+    <select id="selInfoList" resultMap="Base_Result_Map" parameterType="com.hb.demo.zhajinhua.po.HistoryInfoPO">
+        select
+        <include refid="Base_Column_List"/>
+        from history_info
+        <where>
+            <if test="hid != null and hid!=''">
+                and uid = #{uid}
+            </if>
+            <if test="uid != null and uid!=''">
+                and uid = #{uid}
+            </if>
+            <if test="rid != null and rid!=''">
+                and rid = #{rid}
+            </if>
+            <if test="cid != null and cid!=''">
+                and cid = #{cid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addInfo" parameterType="com.hb.demo.zhajinhua.po.HistoryInfoPO" useGeneratedKeys="true" keyProperty="hid">
+        insert into history_info(uid, cid, rid, create_time)
+                values(#{uid,jdbcType=BIGINT},#{cid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT}, now())
+    </insert>
+
+</mapper>

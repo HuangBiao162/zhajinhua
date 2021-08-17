@@ -14,13 +14,14 @@ import java.util.ArrayList;
  */
 @Data
 public class PersonBO {
-    String name;
-    ArrayList <String> cards;
-    String addCard;
-    Long score;
-    CardTypeEnum cardTypeEnum;
+    private Integer id;
+    private String name;
+    private ArrayList <String> cards;
+    private String addCard;
+    private Long score;
+    private CardTypeEnum cardTypeEnum;
     //积分
-    Long integral;
+    private Long integral;
 
     public void setAddCard(String addCard) {
         this.cards.add(addCard);
