@@ -11,10 +11,16 @@ public class CardInfoPO {
     private int cid;
 
     //房间id
-    private int rid;
+    private int rNum;
 
     //玩家id
     private int uid;
+
+    //当前房间回合数
+    private int round;
+
+    //当前回合总积分
+    private int amount;
 
     //牌内容大小与颜色组合
     private String cardContent;

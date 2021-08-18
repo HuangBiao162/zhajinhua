@@ -9,6 +9,11 @@ import java.util.List;
 @Service
 public interface ZjhService {
 
+    /**
+     * 加注
+     *
+     * @param personBOS
+     */
     void addMoney(List <PersonBO> personBOS);
 
     /**

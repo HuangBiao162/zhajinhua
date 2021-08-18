@@ -1,11 +1,13 @@
-package com.hb.demo.zhajinhua.po;
+package com.hb.demo.zhajinhua.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
-public class RoomInfoPO {
+@Builder
+public class RoomVO {
 
     //房间号
     private int rid;
@@ -20,7 +22,7 @@ public class RoomInfoPO {
      * 房间密码，6位数
      * 输入房间密码直接进入房间
      */
-    private int password;
+    private String password;
     private Date createTime;
 
 }

@@ -23,6 +23,9 @@ public class PersonBO {
     //积分
     private Long integral;
 
+    //是否为庄 默认0，庄为1
+    private int master;
+
     public void setAddCard(String addCard) {
         this.cards.add(addCard);
     }

@@ -49,6 +49,17 @@ public class ZjhServiceImpl implements ZjhService {
         }
     }
 
+    /**
+     * 打底
+     */
+    public void addFirst(List <PersonBO> personBOS){
+        for(PersonBO personBO : personBOS){
+            //一人打底一分
+            personBO.setIntegral(personBO.getIntegral()-1);
+        }
+
+    }
+
     @Override
     public PersonBO[] getScore(PersonBO... personList) {
         for (PersonBO personBO : personList) {
@@ -110,7 +121,6 @@ public class ZjhServiceImpl implements ZjhService {
                 Random rd = new Random();
                 int index = rd.nextInt(allCards.size() + 1);
                 allCards.add(index, currentCardType + ZjhUtil.allCardValue[j]);
-
             }
         }
         //限制玩家人数
@@ -118,7 +128,7 @@ public class ZjhServiceImpl implements ZjhService {
         int maxPersonSize = 52 / 3;
         if (currentPersonSize > maxPersonSize) {
             log.error("参与人数太多啦，牌不够发啦！请重新确定人数");
-            return null;
+            return new PersonBO[]{};
         }
         //发牌
         //发牌使用队列弹出

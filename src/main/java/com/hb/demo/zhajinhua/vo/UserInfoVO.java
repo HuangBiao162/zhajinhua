@@ -1,4 +1,4 @@
-package com.hb.demo.zhajinhua.po;
+package com.hb.demo.zhajinhua.vo;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,13 +7,13 @@ import java.util.Date;
 
 @Data
 @Builder
-public class UserInfoPO {
+public class UserInfoVO {
 
     //场次id
     private int cid;
 
     //房间id
-    private int rNum;
+    private int rid;
 
     //玩家id
     private int uid;

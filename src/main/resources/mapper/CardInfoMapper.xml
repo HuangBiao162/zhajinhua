@@ -3,8 +3,9 @@
 <mapper namespace="com.hb.demo.zhajinhua.mapper.CardInfoMapper">
     <resultMap id="Base_Result_Map" type="com.hb.demo.zhajinhua.po.CardInfoPO">
         <result column="uid" jdbcType="BIGINT"  property="uid"/>
-        <result column="rid" jdbcType="BIGINT"   property="rid"/>
+        <result column="rnum" jdbcType="BIGINT"   property="rNum"/>
         <result column="cid" jdbcType="BIGINT"   property="cid"/>
+        <result column="round" jdbcType="BIGINT"   property="round"/>
         <result column="card_content" jdbcType="VARCHAR"   property="cardContent"/>
         <result column="card_size" jdbcType="VARCHAR"   property="cardSize"/>
         <result column="card_color" jdbcType="VARCHAR" property="cardColor"/>
@@ -13,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        uid, rid, cid, card_content, card_size, card_color, card_score, create_time
+        uid, rnum, cid, round, card_content, card_size, card_color, card_score, create_time
     </sql>
 
     <select id="selInfoList" resultMap="Base_Result_Map" parameterType="com.hb.demo.zhajinhua.po.CardInfoPO">
@@ -24,8 +25,8 @@
             <if test="uid != null and uid!=''">
                 and uid = #{uid}
             </if>
-            <if test="rid != null and rid!=''">
-                and rid = #{rid}
+            <if test="rNum != null and rNum!=''">
+                and rnum = #{rNum}
             </if>
             <if test="cid != null and cid!=''">
                 and cid = #{cid}
@@ -34,8 +35,8 @@
     </select>
 
     <insert id="addInfo" parameterType="com.hb.demo.zhajinhua.po.CardInfoPO" useGeneratedKeys="true" keyProperty="cid">
-        insert into card_info(uid, rid, card_content, card_size, card_color, card_score, create_time)
-                values(#{uid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT},
+        insert into card_info(uid, rnum, round, card_content, card_size, card_color, card_score, create_time)
+                values(#{uid,jdbcType=BIGINT}, #{rNum,jdbcType=BIGINT},#{round,jdbcType=BIGINT},
                         #{cardContent,jdbcType=VARCHAR}, #{cardSize,jdbcType=VARCHAR},
                         #{cardColor,jdbcType=VARCHAR}, #{cardScore,jdbcType=BIGINT}, now())
     </insert>

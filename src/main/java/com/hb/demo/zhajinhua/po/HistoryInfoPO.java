@@ -14,7 +14,7 @@ public class HistoryInfoPO {
     private Long cid;
 
     //房间id
-    private Long rid;
+    private Long rNum;
 
     //玩家id
     private Long uid;

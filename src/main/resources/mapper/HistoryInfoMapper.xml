@@ -4,14 +4,14 @@
     <resultMap id="Base_Result_Map" type="com.hb.demo.zhajinhua.po.HistoryInfoPO">
         <result column="hid" jdbcType="BIGINT"   property="hid"/>
         <result column="uid" jdbcType="BIGINT"  property="uid"/>
-        <result column="rid" jdbcType="BIGINT"   property="rid"/>
+        <result column="rnum" jdbcType="BIGINT"   property="rNum"/>
         <result column="cid" jdbcType="BIGINT"   property="cid"/>
         <result column="win" jdbcType="BIGINT"   property="win"/>
         <result column="create_time" jdbcType="DATE" property="createTime"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        hid, uid, rid, cid, win, create_time
+        hid, uid, rnum, cid, win, create_time
     </sql>
 
     <select id="selInfoList" resultMap="Base_Result_Map" parameterType="com.hb.demo.zhajinhua.po.HistoryInfoPO">
@@ -25,8 +25,8 @@
             <if test="uid != null and uid!=''">
                 and uid = #{uid}
             </if>
-            <if test="rid != null and rid!=''">
-                and rid = #{rid}
+            <if test="rNum != null and rNum!=''">
+                and rnum = #{rNum}
             </if>
             <if test="cid != null and cid!=''">
                 and cid = #{cid}
@@ -35,8 +35,8 @@
     </select>
 
     <insert id="addInfo" parameterType="com.hb.demo.zhajinhua.po.HistoryInfoPO" useGeneratedKeys="true" keyProperty="hid">
-        insert into history_info(uid, cid, rid, create_time)
-                values(#{uid,jdbcType=BIGINT},#{cid,jdbcType=BIGINT}, #{rid,jdbcType=BIGINT}, now())
+        insert into history_info(uid, cid, rnum, create_time)
+                values(#{uid,jdbcType=BIGINT},#{cid,jdbcType=BIGINT}, #{rNum,jdbcType=BIGINT}, now())
     </insert>
 
 </mapper>
